@@ -76,32 +76,25 @@ export class NineSevenModelSelectorInjector implements FrontendApplicationContri
         const bar = document.createElement('div');
         bar.id = '79-model-bar';
         bar.style.cssText = `
-            display: flex; align-items: center; gap: 8px;
-            padding: 4px 10px; margin: 0;
-            background: rgba(22,22,42,0.6);
-            border-top: 1px solid rgba(124,58,237,0.1);
-            font-family: 'Inter', sans-serif;
+            display: inline-flex; align-items: center;
+            margin: 0 4px 0 0; flex-shrink: 0;
         `;
 
-        // Label
-        const label = document.createElement('span');
-        label.style.cssText = 'font-size: 10px; color: #555e73; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;';
-        label.textContent = 'Model';
-        bar.appendChild(label);
-
-        // Select
+        // Compact select — no label, just the dropdown
         const select = document.createElement('select');
         select.id = '79-model-select';
         select.style.cssText = `
             background: #0f0f1a; color: #a78bfa;
-            border: 1px solid rgba(124,58,237,0.2);
-            border-radius: 6px; padding: 3px 24px 3px 8px;
-            font-size: 11px; font-family: 'JetBrains Mono', monospace;
-            cursor: pointer; outline: none; flex: 1; min-width: 0;
+            border: 1px solid rgba(124,58,237,0.15);
+            border-radius: 5px; padding: 2px 18px 2px 6px;
+            font-size: 10px; font-family: 'JetBrains Mono', monospace;
+            cursor: pointer; outline: none;
             appearance: none; -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%23a78bfa' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='4' viewBox='0 0 6 4'%3E%3Cpath fill='%23a78bfa' d='M0 0l3 4 3-4z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 8px center;
+            background-position: right 5px center;
+            max-width: 140px;
+            height: 22px;
         `;
 
         this.models.forEach(m => {
@@ -142,6 +135,12 @@ export class NineSevenModelSelectorInjector implements FrontendApplicationContri
     }
 
     private injectBefore(target: Element): void {
+        // Instead of a separate bar, inject inline into the options row
+        const leftOpts = target.querySelector('.theia-ChatInputOptions-left');
+        if (leftOpts) {
+            this.injectInto(leftOpts, 'prepend');
+            return;
+        }
         const bar = this.createSelector();
         target.parentElement?.insertBefore(bar, target);
     }
