@@ -50,34 +50,6 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
         // Inject logo
         setTimeout(() => this.injectLogo(), 2000);
 
-        // Fix status bar to black (Theia sets inline blue)
-        setTimeout(() => this.fixStatusBar(), 2000);
-        setTimeout(() => this.fixStatusBar(), 4000);
-    }
-
-    private fixStatusBar(): void {
-        const fix = () => {
-            const bar = document.querySelector('.theia-statusBar') as HTMLElement;
-            if (!bar) { return; }
-            bar.setAttribute('style', 'background-color: #000000 !important; background: #000000 !important; border-top: 1px solid rgba(255,255,255,0.06) !important;');
-            bar.querySelectorAll('div, span, a, .theia-statusBar-entry').forEach(el => {
-                const h = el as HTMLElement;
-                h.style.cssText = h.style.cssText.replace(/background-color:[^;]+;?/g, '') + ' color: #555 !important;';
-            });
-        };
-        // Run immediately and keep running every 500ms for 10 seconds
-        fix();
-        let count = 0;
-        const interval = setInterval(() => {
-            fix();
-            count++;
-            if (count > 20) { clearInterval(interval); }
-        }, 500);
-        // Also observe for any attribute changes
-        const bar = document.querySelector('.theia-statusBar');
-        if (bar) {
-            new MutationObserver(fix).observe(bar, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
-        }
     }
 
     private injectLogo(): void {

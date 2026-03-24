@@ -54,7 +54,18 @@
         "defaultIconTheme": "theia-file-icons",
         "preferences": {
           "ai-features.ollama.url": "http://localhost:11434",
-          "ai-features.ollama.models": ["qwen2.5-coder:7b"]
+          "ai-features.ollama.models": ["qwen2.5-coder:7b"],
+          "workbench.colorCustomizations": {
+            "statusBar.background": "#000000",
+            "statusBar.foreground": "#555555",
+            "statusBar.noFolderBackground": "#000000",
+            "statusBar.debuggingBackground": "#000000",
+            "statusBar.debuggingForeground": "#555555",
+            "statusBarItem.activeBackground": "#111111",
+            "statusBarItem.hoverBackground": "#111111",
+            "statusBarItem.prominentBackground": "#000000",
+            "statusBarItem.prominentForeground": "#555555"
+          }
         }
       }
     }
