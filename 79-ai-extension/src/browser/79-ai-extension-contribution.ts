@@ -43,6 +43,25 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
         setTimeout(() => {
             this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
         }, 1500);
+
+        // Inject logo into menu bar
+        setTimeout(() => this.injectLogo(), 2000);
+    }
+
+    private injectLogo(): void {
+        if (document.getElementById('79-logo-img')) {
+            return;
+        }
+        const menuBar = document.querySelector('.p-MenuBar') || document.querySelector('.lm-MenuBar');
+        if (!menuBar) {
+            return;
+        }
+        const img = document.createElement('img');
+        img.id = '79-logo-img';
+        img.src = './favicon.ico';
+        img.style.cssText = 'width: 18px; height: 18px; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); filter: invert(1); pointer-events: none;';
+        (menuBar as HTMLElement).style.position = 'relative';
+        menuBar.insertBefore(img, menuBar.firstChild);
     }
 
     registerCommands(commands: CommandRegistry): void {

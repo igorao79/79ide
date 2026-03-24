@@ -34,21 +34,21 @@ export class NineSevenWelcomeWidget extends ReactWidget {
                 <div className="welcome-actions">
                     <div className="welcome-action-card" onClick={() => this.exec('ai-chat-ui:toggle')}>
                         <div className="welcome-action-icon">
-                            <span className="codicon codicon-comment-discussion" style={{ fontSize: '24px', color: '#7c3aed' }} />
+                            <span className="codicon codicon-comment-discussion" style={{ fontSize: '22px', color: '#fff' }} />
                         </div>
                         <div className="welcome-action-title">AI Chat</div>
                         <div className="welcome-action-desc">Talk to 79 Coder</div>
                     </div>
                     <div className="welcome-action-card" onClick={() => this.exec('workspace:open')}>
                         <div className="welcome-action-icon">
-                            <span className="codicon codicon-folder-opened" style={{ fontSize: '24px', color: '#22d3ee' }} />
+                            <span className="codicon codicon-folder-opened" style={{ fontSize: '22px', color: '#fff' }} />
                         </div>
                         <div className="welcome-action-title">Open Project</div>
                         <div className="welcome-action-desc">Open folder</div>
                     </div>
                     <div className="welcome-action-card" onClick={() => this.exec('terminal:new')}>
                         <div className="welcome-action-icon">
-                            <span className="codicon codicon-terminal" style={{ fontSize: '24px', color: '#10b981' }} />
+                            <span className="codicon codicon-terminal" style={{ fontSize: '22px', color: '#fff' }} />
                         </div>
                         <div className="welcome-action-title">Terminal</div>
                         <div className="welcome-action-desc">AI-powered shell</div>

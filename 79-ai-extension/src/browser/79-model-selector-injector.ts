@@ -77,24 +77,22 @@ export class NineSevenModelSelectorInjector implements FrontendApplicationContri
         bar.id = '79-model-bar';
         bar.style.cssText = `
             display: inline-flex; align-items: center;
-            margin: 0 4px 0 0; flex-shrink: 0;
+            margin: 0 6px 0 0; flex-shrink: 0;
         `;
 
-        // Compact select — no label, just the dropdown
         const select = document.createElement('select');
         select.id = '79-model-select';
         select.style.cssText = `
-            background: #0f0f1a; color: #a78bfa;
-            border: 1px solid rgba(124,58,237,0.15);
-            border-radius: 5px; padding: 2px 18px 2px 6px;
+            background: #151515; color: #888;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px; padding: 2px 16px 2px 6px;
             font-size: 10px; font-family: 'JetBrains Mono', monospace;
             cursor: pointer; outline: none;
             appearance: none; -webkit-appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='4' viewBox='0 0 6 4'%3E%3Cpath fill='%23a78bfa' d='M0 0l3 4 3-4z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='4' viewBox='0 0 6 4'%3E%3Cpath fill='%23888' d='M0 0l3 4 3-4z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 5px center;
-            max-width: 140px;
-            height: 22px;
+            max-width: 130px; height: 20px;
         `;
 
         this.models.forEach(m => {
@@ -107,18 +105,15 @@ export class NineSevenModelSelectorInjector implements FrontendApplicationContri
 
         select.addEventListener('change', () => {
             this.currentModel = select.value;
-            // Flash green
-            select.style.borderColor = '#34d399';
-            setTimeout(() => { select.style.borderColor = 'rgba(124,58,237,0.2)'; }, 800);
+            select.style.color = '#fff';
+            setTimeout(() => { select.style.color = '#888'; }, 800);
         });
 
         select.addEventListener('focus', () => {
-            select.style.borderColor = '#7c3aed';
-            select.style.boxShadow = '0 0 0 2px rgba(124,58,237,0.15)';
+            select.style.borderColor = 'rgba(255,255,255,0.2)';
         });
         select.addEventListener('blur', () => {
-            select.style.borderColor = 'rgba(124,58,237,0.2)';
-            select.style.boxShadow = 'none';
+            select.style.borderColor = 'rgba(255,255,255,0.08)';
         });
 
         bar.appendChild(select);
