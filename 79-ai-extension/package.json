@@ -1,0 +1,32 @@
+{
+  "name": "79-ai-extension",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "theia-extension"
+  ],
+  "files": [
+    "lib",
+    "src"
+  ],
+  "theiaExtensions": [
+    {
+      "frontend": "lib/browser/79-ai-extension-frontend-module"
+    }
+  ],
+  "dependencies": {
+    "@theia/core": "1.69.0",
+    "@theia/ai-core": "1.69.0",
+    "@theia/ai-chat": "1.69.0",
+    "@theia/ai-chat-ui": "1.69.0"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.0",
+    "typescript": "~5.4.0"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "clean": "rimraf lib",
+    "watch": "tsc -w -p ."
+  }
+}

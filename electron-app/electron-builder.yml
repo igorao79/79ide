@@ -1,0 +1,24 @@
+appId: com.79ide.app
+productName: "79 IDE"
+directories:
+  buildResources: resources
+win:
+  target:
+    - nsis
+    - portable
+  icon: resources/icons/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  installerIcon: resources/icons/icon.ico
+  uninstallerIcon: resources/icons/icon.ico
+  installerHeaderIcon: resources/icons/icon.ico
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: resources/icons/icon.png
+mac:
+  target:
+    - dmg
+  icon: resources/icons/icon.icns

@@ -1,0 +1,16 @@
+node_modules/
+lib/
+dist/
+*.js.map
+*.d.ts.map
+browser-app/src-gen/
+browser-app/gen-webpack*.js
+browser-app/lib/
+electron-app/src-gen/
+electron-app/gen-webpack*.js
+electron-app/lib/
+plugins/
+.theia/
+*.log
+.DS_Store
+Thumbs.db

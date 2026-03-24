@@ -1,0 +1,171 @@
+/* ===== 79 IDE Welcome Page ===== */
+
+.welcome-page-root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px 20px;
+    background: radial-gradient(ellipse at 50% 0%, rgba(124, 58, 237, 0.08) 0%, transparent 60%),
+                var(--79-bg-deepest, #0a0a0f);
+    overflow-y: auto;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: var(--79-text-primary, #e2e8f0);
+}
+
+/* Logo */
+.welcome-logo {
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.welcome-logo-text {
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    user-select: none;
+}
+
+.welcome-logo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.welcome-subtitle {
+    font-size: 15px;
+    color: var(--79-text-secondary, #94a3b8);
+    margin-bottom: 48px;
+    letter-spacing: 0.5px;
+}
+
+/* Action Cards */
+.welcome-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 640px;
+    width: 100%;
+    margin-bottom: 48px;
+}
+
+.welcome-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    background: var(--79-bg-surface, #1a1a2e);
+    border: 1px solid var(--79-border, #2d2d4a);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+.welcome-action-card:hover {
+    border-color: var(--79-accent, #7c3aed);
+    background: var(--79-bg-elevated, #222240);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+}
+
+.welcome-action-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(124, 58, 237, 0.1);
+    border-radius: 12px;
+}
+
+.welcome-action-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--79-text-primary, #e2e8f0);
+    margin-bottom: 4px;
+}
+
+.welcome-action-desc {
+    font-size: 11px;
+    color: var(--79-text-muted, #64748b);
+    text-align: center;
+}
+
+/* Quick Start Section */
+.welcome-quickstart {
+    max-width: 640px;
+    width: 100%;
+    background: var(--79-bg-surface, #1a1a2e);
+    border: 1px solid var(--79-border, #2d2d4a);
+    border-radius: 12px;
+    padding: 24px 32px;
+}
+
+.welcome-quickstart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--79-text-secondary, #94a3b8);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 16px;
+}
+
+.welcome-shortcut-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.welcome-shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(45, 45, 74, 0.5);
+}
+
+.welcome-shortcut-item:last-child {
+    border-bottom: none;
+}
+
+.welcome-shortcut-label {
+    color: var(--79-text-secondary, #94a3b8);
+    font-size: 13px;
+}
+
+.welcome-shortcut-key {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    padding: 3px 8px;
+    background: var(--79-bg-elevated, #222240);
+    border: 1px solid var(--79-border, #2d2d4a);
+    border-radius: 4px;
+    color: var(--79-accent-light, #a78bfa);
+}
+
+/* Footer */
+.welcome-footer {
+    margin-top: 32px;
+    font-size: 11px;
+    color: var(--79-text-muted, #64748b);
+}
+
+.welcome-footer-version {
+    color: var(--79-accent-light, #a78bfa);
+    font-weight: 500;
+}

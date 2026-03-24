@@ -1,0 +1,68 @@
+{
+  "name": "79-ide-electron-app",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@theia/core": "1.69.0",
+    "@theia/editor": "1.69.0",
+    "@theia/electron": "1.69.0",
+    "@theia/filesystem": "1.69.0",
+    "@theia/markers": "1.69.0",
+    "@theia/messages": "1.69.0",
+    "@theia/mini-browser": "1.69.0",
+    "@theia/monaco": "1.69.0",
+    "@theia/navigator": "1.69.0",
+    "@theia/outline-view": "1.69.0",
+    "@theia/output": "1.69.0",
+    "@theia/preferences": "1.69.0",
+    "@theia/process": "1.69.0",
+    "@theia/scm": "1.69.0",
+    "@theia/search-in-workspace": "1.69.0",
+    "@theia/terminal": "1.69.0",
+    "@theia/workspace": "1.69.0",
+    "@theia/debug": "1.69.0",
+    "@theia/plugin-ext": "1.69.0",
+    "@theia/plugin-ext-vscode": "1.69.0",
+    "@theia/ai-core": "1.69.0",
+    "@theia/ai-core-ui": "1.69.0",
+    "@theia/ai-chat": "1.69.0",
+    "@theia/ai-chat-ui": "1.69.0",
+    "@theia/ai-code-completion": "1.69.0",
+    "@theia/ai-editor": "1.69.0",
+    "@theia/ai-terminal": "1.69.0",
+    "@theia/ai-history": "1.69.0",
+    "@theia/ai-ide": "1.69.0",
+    "@theia/ai-mcp": "1.69.0",
+    "@theia/ai-mcp-ui": "1.69.0",
+    "@theia/ai-ollama": "1.69.0",
+    "@theia/ai-openai": "1.69.0",
+    "79-ai-extension": "1.0.0"
+  },
+  "devDependencies": {
+    "@theia/cli": "1.69.0",
+    "electron": "38.4.0"
+  },
+  "scripts": {
+    "build": "theia build --mode development",
+    "build:prod": "theia build",
+    "start": "theia start --plugins=local-dir:../plugins --electron",
+    "package": "electron-builder -c electron-builder.yml",
+    "clean": "theia clean"
+  },
+  "theia": {
+    "target": "electron",
+    "frontend": {
+      "config": {
+        "applicationName": "79 IDE",
+        "defaultIconTheme": "theia-file-icons",
+        "preferences": {
+          "ai-features.ollama.url": "http://localhost:11434",
+          "ai-features.ollama.models": [
+            "qwen2.5-coder:7b"
+          ]
+        }
+      }
+    }
+  }
+}

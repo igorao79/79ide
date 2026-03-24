@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "79-ide",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "79-ai-extension",
+    "browser-app",
+    "electron-app"
+  ],
+  "scripts": {
+    "build": "yarn build:extensions && yarn build:apps",
+    "build:extensions": "yarn --cwd 79-ai-extension build",
+    "build:apps": "yarn --cwd browser-app build && yarn --cwd electron-app build",
+    "start": "yarn --cwd browser-app start",
+    "start:electron": "yarn --cwd electron-app start",
+    "clean": "yarn --cwd 79-ai-extension clean && yarn --cwd browser-app clean && yarn --cwd electron-app clean"
+  },
+  "devDependencies": {
+    "lerna": "^7.0.0"
+  }
+}
