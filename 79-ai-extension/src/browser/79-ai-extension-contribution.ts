@@ -11,7 +11,7 @@ export const OPEN_WELCOME_COMMAND: Command = {
 
 export const OPEN_GIT_COMMAND: Command = {
     id: '79-ide.open-git',
-    label: '79 IDE: Git Quick Panel'
+    label: '79 IDE: Quick Git'
 };
 
 @injectable()
@@ -35,54 +35,15 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
 
     async onStart(app: FrontendApplication): Promise<void> {
         injectTheme();
-
-        // Open Welcome tab
         this.openView({ activate: true, reveal: true });
 
-        // Open AI Chat in right panel — try multiple command IDs
+        // Open AI Chat
         setTimeout(() => {
-            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {
-                this.commandService.executeCommand('aiChat:toggle').catch(() => {
-                    this.commandService.executeCommand('ai-chat-ui.toggle').catch(() => {});
-                });
-            });
-        }, 1000);
-        // Retry after layout settles
-        setTimeout(() => {
-            const chatPanel = document.querySelector('#ai-chat-view, .theia-ChatView');
-            if (!chatPanel || (chatPanel as HTMLElement).offsetWidth < 10) {
-                this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
-            }
-        }, 3000);
+            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
+        }, 1500);
 
-        // Inject logo into menu bar
+        // Inject logo
         setTimeout(() => this.injectLogo(), 2000);
-
-        // Fix status bar colors via JS (inline styles override CSS)
-        setTimeout(() => this.fixStatusBar(), 2000);
-        setTimeout(() => this.fixStatusBar(), 5000);
-    }
-
-    private fixStatusBar(): void {
-        const bar = document.querySelector('.theia-statusBar') as HTMLElement;
-        if (!bar) { return; }
-        bar.style.setProperty('background', '#ffffff', 'important');
-        bar.style.setProperty('background-color', '#ffffff', 'important');
-        bar.style.setProperty('border-top', 'none', 'important');
-        // Fix all children
-        bar.querySelectorAll('*').forEach(el => {
-            const htmlEl = el as HTMLElement;
-            htmlEl.style.setProperty('color', '#000000', 'important');
-            htmlEl.style.setProperty('background', 'transparent', 'important');
-            htmlEl.style.setProperty('background-color', 'transparent', 'important');
-        });
-        // Watch for new status bar entries
-        const observer = new MutationObserver(() => {
-            bar.querySelectorAll('*').forEach(el => {
-                (el as HTMLElement).style.setProperty('color', '#000000', 'important');
-            });
-        });
-        observer.observe(bar, { childList: true, subtree: true });
     }
 
     private injectLogo(): void {

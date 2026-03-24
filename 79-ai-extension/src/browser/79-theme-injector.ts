@@ -99,27 +99,11 @@ body, .theia-ApplicationShell { background: #000 !important; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-/* ===== STATUS BAR — WHITE (override everything) ===== */
-.theia-statusBar,
-#theia-statusBar,
-body .theia-statusBar,
-.theia-ApplicationShell .theia-statusBar {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    border-top: none !important;
-    height: 24px !important;
-    color: #000 !important;
-}
-.theia-statusBar *,
-.theia-statusBar-entry,
-.theia-statusBar-entry *,
-.theia-statusBar-entry a,
-.theia-statusBar-entry span,
-.theia-statusBar .codicon,
-.theia-statusBar-entry .codicon {
-    color: #000 !important;
-    background: transparent !important;
-}
+/* ===== STATUS BAR — Black ===== */
+.theia-statusBar { background: #000 !important; background-color: #000 !important; border-top: 1px solid rgba(255,255,255,0.06) !important; height: 24px !important; }
+.theia-statusBar-entry { color: #555 !important; }
+.theia-statusBar-entry a { color: #555 !important; }
+.theia-statusBar .codicon { color: #555 !important; }
 
 /* ===== INPUTS ===== */
 .theia-input, .monaco-inputbox .input { background: #151515 !important; border: 1px solid rgba(255,255,255,0.08) !important; border-radius: 6px !important; color: #fff !important; }
