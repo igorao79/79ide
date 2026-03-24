@@ -39,10 +39,21 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
         // Open Welcome tab
         this.openView({ activate: true, reveal: true });
 
-        // Open AI Chat in right panel
+        // Open AI Chat in right panel — try multiple command IDs
         setTimeout(() => {
-            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
-        }, 1500);
+            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {
+                this.commandService.executeCommand('aiChat:toggle').catch(() => {
+                    this.commandService.executeCommand('ai-chat-ui.toggle').catch(() => {});
+                });
+            });
+        }, 1000);
+        // Retry after layout settles
+        setTimeout(() => {
+            const chatPanel = document.querySelector('#ai-chat-view, .theia-ChatView');
+            if (!chatPanel || (chatPanel as HTMLElement).offsetWidth < 10) {
+                this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
+            }
+        }, 3000);
 
         // Inject logo into menu bar
         setTimeout(() => this.injectLogo(), 2000);
