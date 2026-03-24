@@ -6,6 +6,7 @@ import { NineSevenCoderAgent } from './79-coder-agent';
 import { NineSevenWelcomeWidget } from './79-welcome-widget';
 import { NineSevenGitWidget } from './79-git-widget';
 import { NineSevenExtensionContribution } from './79-ai-extension-contribution';
+import { NineSevenModelSelectorInjector } from './79-model-selector-injector';
 
 export default new ContainerModule(bind => {
     // Register 79 Coder AI Agent
@@ -26,6 +27,10 @@ export default new ContainerModule(bind => {
         id: NineSevenGitWidget.ID,
         createWidget: () => ctx.container.get<NineSevenGitWidget>(NineSevenGitWidget)
     })).inSingletonScope();
+
+    // Register Model Selector Injector
+    bind(NineSevenModelSelectorInjector).toSelf().inSingletonScope();
+    bind(FrontendApplicationContribution).toService(NineSevenModelSelectorInjector);
 
     // Register Contribution (commands, menus, startup behavior)
     bindViewContribution(bind, NineSevenExtensionContribution);
