@@ -159,6 +159,26 @@ body, .theia-ApplicationShell { background: #000 !important; }
 /* ===== AI CHAT ===== */
 .theia-ChatView, .ai-chat-view, #ai-chat-view { background: #080808 !important; }
 
+/* Hide default Theia welcome message, agent avatar, agent suggestions */
+.theia-WelcomeMessage-Container-Inner { display: none !important; }
+.theia-WelcomeMessage-Divider { display: none !important; }
+.chat-agent-suggestions { display: none !important; }
+.theia-AgentAvatar { display: none !important; }
+
+/* Hide "Recent Chats" header in welcome */
+.theia-ChatView h2, .theia-ChatView h3 { display: none !important; }
+
+/* Replace with simple centered text */
+.theia-WelcomeMessage-Container {
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    height: 100% !important;
+}
+.theia-WelcomeMessage-Container::before {
+    content: '79 AI' !important;
+    font-size: 24px !important; font-weight: 700 !important; color: #333 !important;
+    letter-spacing: 2px !important;
+}
+
 .p-DockPanel-handle, .lm-DockPanel-handle { background: var(--79-border) !important; }
 ::selection { background: rgba(255,255,255,0.15) !important; }
 
