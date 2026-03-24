@@ -179,54 +179,57 @@ body, .theia-ApplicationShell {
     filter: brightness(1.3) drop-shadow(0 0 8px currentColor) !important;
 }
 
-/* ============================================
-   TABS — Pill-стиль, не как в VS Code
-   ============================================ */
-.p-TabBar:not(.theia-app-sides) {
-    background: var(--79-bg-deep) !important;
-    border-bottom: 1px solid var(--79-border) !important;
+/* ===== TABS ===== */
+.p-TabBar:not(.theia-app-sides),
+.lm-TabBar:not(.theia-app-sides) {
+    background: #0c0c16 !important;
+    background-color: #0c0c16 !important;
+    border-bottom: 1px solid rgba(124,58,237,0.12) !important;
     padding: 6px 8px 0 !important;
     min-height: 40px !important;
 }
+/* Убить любой серый фон у контейнера табов */
+.theia-tabBar-content, .p-TabBar-content, .lm-TabBar-content,
+#theia-main-content-panel > .p-TabBar,
+#theia-main-content-panel > .lm-TabBar,
+.theia-app-main .p-TabBar,
+.theia-app-main .lm-TabBar {
+    background: #0c0c16 !important;
+    background-color: #0c0c16 !important;
+}
 
-.p-TabBar:not(.theia-app-sides) .p-TabBar-tab {
+.p-TabBar:not(.theia-app-sides) .p-TabBar-tab,
+.lm-TabBar:not(.theia-app-sides) .lm-TabBar-tab {
     background: transparent !important;
     border: none !important;
     border-radius: 10px 10px 0 0 !important;
     padding: 6px 18px !important;
     margin: 0 2px !important;
-    height: auto !important;
     transition: all 0.15s ease !important;
     position: relative !important;
 }
-
-.p-TabBar:not(.theia-app-sides) .p-TabBar-tab:hover {
+.p-TabBar:not(.theia-app-sides) .p-TabBar-tab:hover,
+.lm-TabBar:not(.theia-app-sides) .lm-TabBar-tab:hover {
     background: rgba(124,58,237,0.08) !important;
 }
-
-.p-TabBar:not(.theia-app-sides) .p-TabBar-tab.p-mod-current {
-    background: var(--79-bg-base) !important;
+.p-TabBar:not(.theia-app-sides) .p-TabBar-tab.p-mod-current,
+.lm-TabBar:not(.theia-app-sides) .lm-TabBar-tab.lm-mod-current {
+    background: #101020 !important;
 }
-
-/* Градиентная полоска под активным табом */
-.p-TabBar:not(.theia-app-sides) .p-TabBar-tab.p-mod-current::after {
-    content: '' !important;
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 10% !important;
-    right: 10% !important;
-    height: 2px !important;
-    background: linear-gradient(90deg, var(--79-accent), var(--79-neon)) !important;
+/* Gradient underline */
+.p-TabBar:not(.theia-app-sides) .p-TabBar-tab.p-mod-current::after,
+.lm-TabBar:not(.theia-app-sides) .lm-TabBar-tab.lm-mod-current::after {
+    content: '' !important; position: absolute !important; bottom: 0 !important;
+    left: 10% !important; right: 10% !important; height: 2px !important;
+    background: linear-gradient(90deg, #7c3aed, #22d3ee) !important;
     border-radius: 2px 2px 0 0 !important;
-    box-shadow: 0 0 10px rgba(124,58,237,0.4) !important;
 }
 
-.p-TabBar-tabLabel {
-    font-size: 12px !important;
-    font-weight: 400 !important;
-    color: var(--79-text-muted) !important;
+.p-TabBar-tabLabel, .lm-TabBar-tabLabel {
+    font-size: 12px !important; font-weight: 400 !important; color: #555e73 !important;
 }
-.p-TabBar-tab.p-mod-current .p-TabBar-tabLabel {
+.p-TabBar-tab.p-mod-current .p-TabBar-tabLabel,
+.lm-TabBar-tab.lm-mod-current .lm-TabBar-tabLabel {
     color: var(--79-text-primary) !important;
     font-weight: 500 !important;
 }
@@ -337,23 +340,38 @@ body, .theia-ApplicationShell {
    ============================================ */
 .terminal-wrapper, .xterm { background-color: var(--79-bg-deepest) !important; }
 
-/* ============================================
-   AI CHAT
-   ============================================ */
+/* ===== AI CHAT ===== */
 .theia-ChatView, .ai-chat-view, #ai-chat-view {
-    background: var(--79-bg-deep) !important;
+    background: #0c0c16 !important;
 }
 
-.p-DockPanel-handle { background: var(--79-border) !important; }
+/* Chat input area styling */
+.theia-ChatInput, .chat-input-widget {
+    background: #16162a !important;
+    border: 1px solid rgba(124,58,237,0.15) !important;
+    border-radius: 10px !important;
+}
+
+/* Model selector in chat — make it visible */
+.theia-ChatView select, .ai-chat-view select,
+.chat-model-selector, .model-selector {
+    background: #16162a !important;
+    color: #a78bfa !important;
+    border: 1px solid rgba(124,58,237,0.2) !important;
+    border-radius: 6px !important;
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+.p-DockPanel-handle, .lm-DockPanel-handle { background: rgba(124,58,237,0.08) !important; }
 ::selection { background: rgba(124, 58, 237, 0.35) !important; }
 
-/* ============================================
-   SETTINGS GEAR — более незаметный
-   ============================================ */
-.p-TabBar.theia-app-sides ~ * .codicon-settings-gear,
-.theia-sidebar-menu .codicon-settings-gear {
-    opacity: 0.4 !important;
-}
+/* ===== SETTINGS GEAR ===== */
+.theia-sidebar-menu .codicon-settings-gear { opacity: 0.4 !important; }
+
+/* ===== GIT WIDGET ===== */
+#79-git-quick { background: #0c0c16 !important; }
 
 /* ============================================
    WELCOME PAGE

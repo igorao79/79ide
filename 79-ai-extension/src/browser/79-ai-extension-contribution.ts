@@ -9,6 +9,11 @@ export const OPEN_WELCOME_COMMAND: Command = {
     label: '79 IDE: Welcome'
 };
 
+export const OPEN_GIT_COMMAND: Command = {
+    id: '79-ide.open-git',
+    label: '79 IDE: Git Quick Panel'
+};
+
 @injectable()
 export class NineSevenExtensionContribution extends AbstractViewContribution<NineSevenWelcomeWidget> implements FrontendApplicationContribution {
 
@@ -25,23 +30,18 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
     }
 
     async initialize(): Promise<void> {
-        // Inject theme CSS as early as possible
         injectTheme();
     }
 
     async onStart(app: FrontendApplication): Promise<void> {
-        // Re-inject theme in case initialize was too early
         injectTheme();
 
         // Open Welcome tab
         this.openView({ activate: true, reveal: true });
 
-        // Open AI Chat in right panel after layout is ready
+        // Open AI Chat in right panel
         setTimeout(() => {
-            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {
-                // Try alternative command IDs
-                this.commandService.executeCommand('aiChat:toggle').catch(() => {});
-            });
+            this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
         }, 1500);
     }
 
@@ -49,6 +49,11 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
         super.registerCommands(commands);
         commands.registerCommand(OPEN_WELCOME_COMMAND, {
             execute: () => this.openView({ activate: true, reveal: true })
+        });
+        commands.registerCommand(OPEN_GIT_COMMAND, {
+            execute: () => {
+                this.commandService.executeCommand('79-git-quick:toggle').catch(() => {});
+            }
         });
     }
 }
