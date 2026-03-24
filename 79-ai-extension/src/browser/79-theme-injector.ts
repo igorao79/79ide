@@ -132,9 +132,11 @@ body, .theia-ApplicationShell { background: #000 !important; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
 
-/* ===== STATUS BAR ===== */
-.theia-statusBar { background: #000 !important; border-top: 1px solid var(--79-border) !important; height: 24px !important; }
-.theia-statusBar-entry { color: #555 !important; font-size: 11px !important; }
+/* ===== STATUS BAR — White ===== */
+.theia-statusBar { background: #ffffff !important; border-top: none !important; height: 24px !important; }
+.theia-statusBar-entry { color: #000 !important; font-size: 11px !important; }
+.theia-statusBar-entry a { color: #000 !important; }
+.theia-statusBar-entry .codicon { color: #000 !important; }
 
 /* ===== INPUTS ===== */
 .theia-input, .monaco-inputbox .input {
@@ -159,24 +161,19 @@ body, .theia-ApplicationShell { background: #000 !important; }
 /* ===== AI CHAT ===== */
 .theia-ChatView, .ai-chat-view, #ai-chat-view { background: #080808 !important; }
 
-/* Hide default Theia welcome message, agent avatar, agent suggestions */
+/* Hide default welcome text and agent suggestions in chat */
 .theia-WelcomeMessage-Container-Inner { display: none !important; }
 .theia-WelcomeMessage-Divider { display: none !important; }
 .chat-agent-suggestions { display: none !important; }
-.theia-AgentAvatar { display: none !important; }
 
-/* Hide "Recent Chats" header in welcome */
-.theia-ChatView h2, .theia-ChatView h3 { display: none !important; }
-
-/* Replace with simple centered text */
+/* Replace welcome with "79 AI" */
 .theia-WelcomeMessage-Container {
     display: flex !important; align-items: center !important; justify-content: center !important;
-    height: 100% !important;
 }
 .theia-WelcomeMessage-Container::before {
     content: '79 AI' !important;
-    font-size: 24px !important; font-weight: 700 !important; color: #333 !important;
-    letter-spacing: 2px !important;
+    font-size: 28px !important; font-weight: 700 !important; color: #222 !important;
+    letter-spacing: 3px !important;
 }
 
 .p-DockPanel-handle, .lm-DockPanel-handle { background: var(--79-border) !important; }
@@ -191,20 +188,34 @@ body, .theia-ApplicationShell { background: #000 !important; }
     height: 100%; padding: 40px 20px;
     background: #000; overflow-y: auto; color: #fff; font-family: var(--79-font);
 }
-.welcome-logo { position: relative; margin-bottom: 12px; }
+.welcome-logo {
+    position: relative; margin-bottom: 12px;
+    display: flex; flex-direction: column; align-items: center;
+}
 .welcome-logo-text {
     font-size: 96px; font-weight: 800; letter-spacing: -6px;
-    color: #fff; -webkit-text-fill-color: #fff; user-select: none;
-}
-.welcome-logo-glow {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-    pointer-events: none; z-index: -1;
+    color: #fff; user-select: none; line-height: 1;
 }
 .welcome-subtitle {
     font-size: 11px; color: #555; margin-bottom: 56px;
     letter-spacing: 6px; font-weight: 500; text-transform: uppercase;
+}
+
+/* Shimmer animation */
+.welcome-shimmer {
+    background: linear-gradient(
+        90deg,
+        #333 0%, #666 25%, #fff 50%, #666 75%, #333 100%
+    ) !important;
+    background-size: 200% 100% !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    animation: shimmer79 3s ease-in-out infinite !important;
+}
+@keyframes shimmer79 {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
 }
 .welcome-actions {
     display: grid; grid-template-columns: repeat(3, 1fr);

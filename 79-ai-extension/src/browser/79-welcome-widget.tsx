@@ -24,15 +24,14 @@ export class NineSevenWelcomeWidget extends ReactWidget {
         return (
             <div className="welcome-page-root">
                 <div className="welcome-logo">
-                    <div className="welcome-logo-glow" />
                     <img
                         src="./favicon.ico"
-                        style={{ width: '64px', height: '64px', filter: 'invert(1)', marginBottom: '12px' }}
+                        style={{ width: '56px', height: '56px', filter: 'invert(1)', display: 'block', margin: '0 auto 16px' }}
                         alt="79"
                     />
                     <div className="welcome-logo-text">79</div>
                 </div>
-                <div className="welcome-subtitle">
+                <div className="welcome-subtitle welcome-shimmer">
                     INTELLIGENT DEVELOPMENT ENVIRONMENT
                 </div>
 
