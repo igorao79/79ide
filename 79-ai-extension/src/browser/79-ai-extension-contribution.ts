@@ -42,8 +42,34 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
             this.commandService.executeCommand('ai-chat-ui:toggle').catch(() => {});
         }, 1500);
 
+        // Open Git Quick panel
+        setTimeout(() => {
+            this.commandService.executeCommand('79-git-quick:toggle').catch(() => {});
+        }, 2000);
+
         // Inject logo
         setTimeout(() => this.injectLogo(), 2000);
+
+        // Fix status bar to black (Theia sets inline blue)
+        setTimeout(() => this.fixStatusBar(), 2000);
+        setTimeout(() => this.fixStatusBar(), 4000);
+    }
+
+    private fixStatusBar(): void {
+        const bar = document.querySelector('.theia-statusBar') as HTMLElement;
+        if (!bar) { return; }
+        bar.style.setProperty('background', '#000', 'important');
+        bar.style.setProperty('background-color', '#000', 'important');
+        bar.style.setProperty('border-top', '1px solid rgba(255,255,255,0.06)', 'important');
+        bar.querySelectorAll('*').forEach(el => {
+            (el as HTMLElement).style.setProperty('color', '#555', 'important');
+        });
+        new MutationObserver(() => {
+            bar.style.setProperty('background-color', '#000', 'important');
+            bar.querySelectorAll('*').forEach(el => {
+                (el as HTMLElement).style.setProperty('color', '#555', 'important');
+            });
+        }).observe(bar, { childList: true, subtree: true, attributes: true });
     }
 
     private injectLogo(): void {
