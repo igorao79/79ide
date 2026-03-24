@@ -57,6 +57,32 @@ export class NineSevenExtensionContribution extends AbstractViewContribution<Nin
 
         // Inject logo into menu bar
         setTimeout(() => this.injectLogo(), 2000);
+
+        // Fix status bar colors via JS (inline styles override CSS)
+        setTimeout(() => this.fixStatusBar(), 2000);
+        setTimeout(() => this.fixStatusBar(), 5000);
+    }
+
+    private fixStatusBar(): void {
+        const bar = document.querySelector('.theia-statusBar') as HTMLElement;
+        if (!bar) { return; }
+        bar.style.setProperty('background', '#ffffff', 'important');
+        bar.style.setProperty('background-color', '#ffffff', 'important');
+        bar.style.setProperty('border-top', 'none', 'important');
+        // Fix all children
+        bar.querySelectorAll('*').forEach(el => {
+            const htmlEl = el as HTMLElement;
+            htmlEl.style.setProperty('color', '#000000', 'important');
+            htmlEl.style.setProperty('background', 'transparent', 'important');
+            htmlEl.style.setProperty('background-color', 'transparent', 'important');
+        });
+        // Watch for new status bar entries
+        const observer = new MutationObserver(() => {
+            bar.querySelectorAll('*').forEach(el => {
+                (el as HTMLElement).style.setProperty('color', '#000000', 'important');
+            });
+        });
+        observer.observe(bar, { childList: true, subtree: true });
     }
 
     private injectLogo(): void {
