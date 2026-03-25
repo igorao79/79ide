@@ -2,6 +2,8 @@ import { ContainerModule } from '@theia/core/shared/inversify';
 import { ChatAgent } from '@theia/ai-chat/lib/common';
 import { Agent } from '@theia/ai-core/lib/common';
 import { FrontendApplicationContribution, WidgetFactory, bindViewContribution } from '@theia/core/lib/browser';
+import { ColorContribution } from '@theia/core/lib/browser/color-application-contribution';
+import { NineSevenColorContribution } from './79-color-contribution';
 import { NineSevenCoderAgent } from './79-coder-agent';
 import { NineSevenWelcomeWidget } from './79-welcome-widget';
 import { NineSevenGitWidget } from './79-git-widget';
@@ -33,6 +35,10 @@ export default new ContainerModule(bind => {
     // Model Selector Injector
     bind(NineSevenModelSelectorInjector).toSelf().inSingletonScope();
     bind(FrontendApplicationContribution).toService(NineSevenModelSelectorInjector);
+
+    // Color overrides (status bar black)
+    bind(NineSevenColorContribution).toSelf().inSingletonScope();
+    bind(ColorContribution).toService(NineSevenColorContribution);
 
     // Main Contribution (Welcome, commands)
     bindViewContribution(bind, NineSevenExtensionContribution);
